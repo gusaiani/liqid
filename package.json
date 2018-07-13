@@ -1,0 +1,20 @@
+{
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "clear-cache": "rm -rf node_modules/.cache/babel-loader",
+    "test":
+      "jest && TEST=cypress start-server-and-test dev http://localhost:3000/login cy:run",
+    "heroku-postbuild": "npm run build",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "analyze": "ANALYZE=1 next build && cat .next/stats.txt"
+  },
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
