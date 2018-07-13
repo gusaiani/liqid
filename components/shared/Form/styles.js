@@ -41,6 +41,7 @@ export default styled.form`
     border: 1px solid ${colors.lightGray};
     border-radius: 6px;
     box-sizing: border-box;
+    font-family: 'Muli';
     font-size: 16px;
     padding: 15px;
     width: 100%;

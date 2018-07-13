@@ -17,6 +17,7 @@ const plugins = [
       alias: {
         components: './components',
         constants: './constants',
+        layouts: './layouts',
         lib: './lib',
         permissions: './permissions',
         services: './services',
