@@ -1,14 +1,17 @@
 import {Component, Fragment} from 'react'
+import Router from 'next/router'
 import Page from 'layouts/Main'
 import Header from 'components/shared/Header'
 import Form from 'components/shared/Form'
 import Button from 'components/shared/Buttons'
-import {findQuestion} from 'utils/questions'
+import {
+  findQuestion,
+  nextQuestionKey,
+  prevQuestionKey} from 'utils/questions'
 
 export default class Liqid extends Component {
   state = {
     errors: [],
-    loading: false,
     data: {}
   }
 
@@ -17,12 +20,21 @@ export default class Liqid extends Component {
     return {questionKey: q}
   }
 
-  handleSubmit = async (e) => {
+  handleBack = () => {
     const {questionKey} = this.props
     const {questionPosition} = findQuestion(questionKey)
-    console.log('Submitted', questionPosition);
+    const prevKey = prevQuestionKey(questionPosition)
 
+    Router.push(`/?q=${prevKey}`)
+  }
+
+  handleSubmit = async (e) => {
     e.preventDefault()
+    const {questionKey} = this.props
+    const {questionPosition} = findQuestion(questionKey)
+    const nextKey = nextQuestionKey(questionPosition)
+
+    Router.push(`/?q=${nextKey}`)
   }
 
   render() {
@@ -40,8 +52,13 @@ export default class Liqid extends Component {
             <h1>{label}</h1>
             <input type="text" placeholder={placeholder} name={questionKey} />
 
-            <Button disabled={loading} full type="submit">
-              {loading ? 'Sending…' : 'Send'}
+            {(questionPosition > 0) &&
+              <Button type="button" onClick={this.handleBack}>
+                Back
+              </Button>
+            }
+            <Button className="right">
+              Next
             </Button>
           </Fragment>
         </Form>

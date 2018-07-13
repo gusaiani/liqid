@@ -19,8 +19,19 @@ export const findQuestion = function(query) {
     return item.query
   })
 
-  const questionPosition = labels.indexOf(query)
-  const question = (questionPosition == -1) ? questions[0] : questions[questionPosition]
+  const position = labels.indexOf(query)
+  const questionPosition = (position == -1) ? 0 : position
+  const question = questions[questionPosition]
 
   return {question, questionPosition, questionsLength: questions.length}
+}
+
+export const nextQuestionKey = function(currentPosition) {
+  const nextKey = questions[currentPosition + 1].query
+  return nextKey
+}
+
+export const prevQuestionKey = function(currentPosition) {
+  const prevKey = questions[currentPosition - 1].query
+  return prevKey
 }
