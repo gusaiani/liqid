@@ -19,6 +19,8 @@ export const findQuestion = function(query) {
     return item.query
   })
 
-  const queryPosition = labels.indexOf(query)
-  return (queryPosition == -1) ? questions[0] : questions[queryPosition]
+  const questionPosition = labels.indexOf(query)
+  const question = (questionPosition == -1) ? questions[0] : questions[questionPosition]
+
+  return {question, questionPosition, questionsLength: questions.length}
 }

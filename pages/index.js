@@ -18,14 +18,17 @@ export default class Liqid extends Component {
   }
 
   handleSubmit = async (e) => {
-    console.log('Submitted');
+    const {questionKey} = this.props
+    const {questionPosition} = findQuestion(questionKey)
+    console.log('Submitted', questionPosition);
+
     e.preventDefault()
   }
 
   render() {
     const {questionKey} = this.props
-    const question = findQuestion(questionKey)
-    const {label, type, placeholder} = findQuestion(questionKey)
+    const {question, questionPosition, questionsLength} = findQuestion(questionKey)
+    const {label, type, placeholder} = question
     const {errors, loading, data} = this.state
 
     return (
