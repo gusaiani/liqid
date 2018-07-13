@@ -34,7 +34,11 @@ export default class Liqid extends Component {
     const {questionPosition} = findQuestion(questionKey)
     const nextKey = nextQuestionKey(questionPosition)
 
-    Router.push(`/?q=${nextKey}`)
+    if (nextKey) {
+      Router.push(`/?q=${nextKey}`)
+    } else {
+      Router.push('/results')
+    }
   }
 
   render() {
