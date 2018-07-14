@@ -2,9 +2,8 @@ import {Component, Fragment} from 'react'
 import TextInputContainer from 'components/shared/Form/TextInput'
 import Router from 'next/router'
 import Page from 'layouts/Main'
-import Header from 'components/shared/Header'
 import Form from 'components/shared/Form'
-import Button from 'components/shared/Buttons'
+import ButtonContainer from 'components/shared/ButtonContainer'
 import {
   findQuestion,
   nextQuestionKey,
@@ -91,7 +90,6 @@ export default class Liqid extends Component {
 
     return (
       <Page>
-        <Header/>
 
         <Form onSubmit={this.handleSubmit}>
           <Fragment>
@@ -103,14 +101,12 @@ export default class Liqid extends Component {
               handleChange={this.handleInputChange}
             />
 
-            {(questionPosition > 0) &&
-              <Button type="button" onClick={this.handleBack}>
-                Back
-              </Button>
-            }
-            <Button disabled={!this.state.nextEnabled} className="right">
-              Next
-            </Button>
+            <ButtonContainer
+              showBack={questionPosition > 0}
+              showNext={true}
+              nextEnabled={this.state.nextEnabled}
+              handleBack={this.handleBack}
+            />
           </Fragment>
         </Form>
       </Page>
