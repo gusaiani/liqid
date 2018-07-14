@@ -53,6 +53,10 @@ export default class Liqid extends Component {
     const {questionPosition} = findQuestion(currentQuestion)
     const prevKey = prevQuestionKey(questionPosition)
 
+    this.setState({currentQuestion: prevKey})
+    this.persistAnswer()
+    this.updateResponse(prevKey)
+
     Router.push(`/?q=${prevKey}`)
   }
 
@@ -61,21 +65,23 @@ export default class Liqid extends Component {
     const {currentQuestion} = this.state
     const {questionPosition} = findQuestion(currentQuestion)
     const nextKey = nextQuestionKey(questionPosition)
-    const nextQuestion = findQuestion(nextKey)
+
+    this.persistAnswer()
+
+    this.setState({currentQuestion: nextKey})
+    this.updateResponse(nextKey)
+
+    const nextUrl = nextKey ? `/?q=${nextKey}` : '/results'
+    Router.push(nextUrl)
+  }
+
+  persistAnswer = () => {
+    const {currentQuestion} = this.state
 
     localStorage.setItem(
       currentQuestion,
       this.state[currentQuestion]
     )
-
-    this.setState({currentQuestion: nextQuestion.question.query})
-    this.updateResponse(nextQuestion.question.query)
-
-    if (nextKey) {
-      Router.push(`/?q=${nextKey}`)
-    } else {
-      Router.push('/results')
-    }
   }
 
   render() {
