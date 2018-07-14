@@ -28,8 +28,11 @@ export default class Liqid extends Component {
 
   componentDidMount(context) {
     const {questionKey} = this.props
+    const response = localStorage.getItem(questionKey)
+
     let obj = {}
-    obj[questionKey] = localStorage.getItem(questionKey)
+    obj[questionKey] = response
+    obj.nextEnabled = !!response
     this.setState(obj)
   }
 
