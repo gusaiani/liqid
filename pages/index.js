@@ -26,17 +26,27 @@ export default class Liqid extends Component {
     })
   }
 
+  componentDidMount(context) {
+    const {questionKey} = this.props
+    let obj = {}
+    obj[questionKey] = localStorage.getItem(questionKey)
+    this.setState(obj)
+  }
+
   static getInitialProps(context) {
-    const {q} = context.query || firstQuestionKey()
-    return {questionKey: q}
+    const {q} = context.query
+    const questionKey = q || firstQuestionKey
+    return {questionKey}
   }
 
   handleInputChange = () => {
+    const {questionKey} = this.props
     const inputValue = this.myRef.current.value
-    this.setState({
-      nextEnabled: inputValue != "",
-      inputValue
-    })
+    this.setState({nextEnabled: inputValue != ""})
+
+    let obj = {}
+    obj[questionKey] = inputValue
+    this.setState(obj)
   }
 
   handleBack = () => {
@@ -54,8 +64,8 @@ export default class Liqid extends Component {
     const nextKey = nextQuestionKey(questionPosition)
 
     localStorage.setItem(
-      questionKey || firstQuestionKey,
-      this.state.inputValue
+      questionKey,
+      this.state[questionKey]
     )
 
     if (nextKey) {
@@ -69,7 +79,6 @@ export default class Liqid extends Component {
     const {questionKey} = this.props
     const {question, questionPosition, questionsLength} = findQuestion(questionKey)
     const {label, type, placeholder} = question
-    const {inputValue} = this.state
 
     return (
       <Page>
@@ -83,7 +92,7 @@ export default class Liqid extends Component {
               placeholder={placeholder}
               ref={this.myRef}
               name={questionKey}
-              value={inputValue}
+              value={this.state[questionKey]}
               onChange={this.handleInputChange}/>
 
             {(questionPosition > 0) &&
