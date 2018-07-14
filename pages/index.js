@@ -7,17 +7,36 @@ import Button from 'components/shared/Buttons'
 import {
   findQuestion,
   nextQuestionKey,
-  prevQuestionKey} from 'utils/questions'
+  prevQuestionKey,
+  firstQuestionKey
+} from 'utils/questions'
 
 export default class Liqid extends Component {
-  state = {
-    errors: [],
-    data: {}
+  constructor(props) {
+    super(props)
+    this.myRef = React.createRef()
+  }
+
+  state = {}
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      nextEnabled: false,
+      inputValue: ""
+    })
   }
 
   static getInitialProps(context) {
-    const {q} = context.query
+    const {q} = context.query || firstQuestionKey()
     return {questionKey: q}
+  }
+
+  handleInputChange = () => {
+    const inputValue = this.myRef.current.value
+    this.setState({
+      nextEnabled: inputValue != "",
+      inputValue
+    })
   }
 
   handleBack = () => {
@@ -34,6 +53,11 @@ export default class Liqid extends Component {
     const {questionPosition} = findQuestion(questionKey)
     const nextKey = nextQuestionKey(questionPosition)
 
+    localStorage.setItem(
+      questionKey || firstQuestionKey,
+      this.state.inputValue
+    )
+
     if (nextKey) {
       Router.push(`/?q=${nextKey}`)
     } else {
@@ -45,7 +69,7 @@ export default class Liqid extends Component {
     const {questionKey} = this.props
     const {question, questionPosition, questionsLength} = findQuestion(questionKey)
     const {label, type, placeholder} = question
-    const {errors, loading, data} = this.state
+    const {inputValue} = this.state
 
     return (
       <Page>
@@ -54,14 +78,20 @@ export default class Liqid extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Fragment>
             <h1>{label}</h1>
-            <input type="text" placeholder={placeholder} name={questionKey} />
+            <input
+              type="text"
+              placeholder={placeholder}
+              ref={this.myRef}
+              name={questionKey}
+              value={inputValue}
+              onChange={this.handleInputChange}/>
 
             {(questionPosition > 0) &&
               <Button type="button" onClick={this.handleBack}>
                 Back
               </Button>
             }
-            <Button className="right">
+            <Button disabled={!this.state.nextEnabled} className="right">
               Next
             </Button>
           </Fragment>
