@@ -1,5 +1,6 @@
 import {Component, Fragment} from 'react'
 import TextInputContainer from 'components/shared/Form/TextInput'
+import SelectInputContainer from 'components/shared/Form/SelectInput'
 import Router from 'next/router'
 import Page from 'layouts/Main'
 import Form from 'components/shared/Form'
@@ -86,20 +87,32 @@ export default class Liqid extends Component {
   render() {
     const {currentQuestion} = this.state
     const {question, questionPosition, questionsLength} = findQuestion(currentQuestion)
-    const {label, type, placeholder} = question
+    const {label, type, placeholder, options} = question
 
     return (
       <Page>
 
         <Form onSubmit={this.handleSubmit}>
           <Fragment>
-            <TextInputContainer
-              label={label}
-              placeholder={placeholder}
-              name={currentQuestion}
-              value={this.state[currentQuestion] || ""}
-              handleChange={this.handleInputChange}
-            />
+            {(type == "text") &&
+              <TextInputContainer
+                label={label}
+                placeholder={placeholder}
+                name={currentQuestion}
+                value={this.state[currentQuestion] || ""}
+                handleChange={this.handleInputChange}
+              />
+            }
+
+            {(type == "select") &&
+              <SelectInputContainer
+                label={label}
+                name={currentQuestion}
+                value={this.state[currentQuestion] || ""}
+                options={options}
+                handleChange={this.handleInputChange}
+              />
+            }
 
             <ButtonContainer
               showBack={questionPosition > 0}

@@ -9,8 +9,22 @@ export const questions = [
   {
     query: 'age',
     label: 'How old are you?',
-    type: 'text',
-    placeholder: 'Age'
+    type: 'select',
+    placeholder: 'Age',
+    options: [
+      {
+        label: 'Twelve',
+        value: '12'
+      },
+      {
+        label: 'Eighteen',
+        value: '18'
+      },
+      {
+        label: 'Twenty-Eight',
+        value: '28'
+      },
+    ],
   },
 
   {
