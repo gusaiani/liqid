@@ -1,4 +1,4 @@
-const questions = [
+export const questions = [
   {
     query: 'name',
     label: 'What is your name?',
