@@ -34,6 +34,7 @@ export const findQuestion = function(query) {
 }
 
 export const firstQuestionKey = questions[0].query
+export const lastQuestionKey = questions[questions.length - 1].query
 
 export const nextQuestionKey = function(currentPosition) {
   const nextQuestion = questions[currentPosition + 1]
