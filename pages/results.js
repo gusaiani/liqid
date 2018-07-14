@@ -25,7 +25,7 @@ export default class Liqid extends Component {
         Here are your results.
 
         {questions.map(question => {
-          return <div key={question.query}>
+          return <div className="result" key={question.query}>
             <p>{question.label}</p>
             {this.state &&
               <p>{this.state[question.query]}</p>
