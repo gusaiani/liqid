@@ -27,6 +27,13 @@ export default class Liqid extends Component {
   componentDidMount() {
     const {currentQuestion} = this.props
     this.updateResponse(currentQuestion)
+
+    window.onpopstate = this.onBackButtonEvent
+  }
+
+  onBackButtonEvent = (e) => {
+    const {currentQuestion} = this.props
+    this.updateResponse(currentQuestion)
   }
 
   updateResponse = (question) => {
