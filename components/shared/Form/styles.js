@@ -29,6 +29,18 @@ export default styled.form`
     padding-top: 7px;
   }
 
+  .radio-container {
+    padding-bottom: 20px;
+
+    &:last-of-type {
+      padding-bottom: 5px;
+    }
+
+    input {
+      margin-right: 14px;
+    }
+  }
+
   @media ${mobileMedia} {
     width: calc(100vw - 40px);
   }

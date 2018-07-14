@@ -30,8 +30,22 @@ export const questions = [
   {
     query: 'salary',
     label: 'What is your current salary?',
-    type: 'text',
-    placeholder: 'Current Salary'
+    type: 'radio',
+    placeholder: 'Current Salary',
+    options: [
+      {
+        label: 'Twelve',
+        value: '12'
+      },
+      {
+        label: 'Eighteen',
+        value: '18'
+      },
+      {
+        label: 'Twenty-Eight',
+        value: '28'
+      },
+    ],
   },
 ]
 

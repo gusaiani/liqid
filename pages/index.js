@@ -1,6 +1,7 @@
 import {Component, Fragment} from 'react'
 import TextInputContainer from 'components/shared/Form/TextInput'
 import SelectInputContainer from 'components/shared/Form/SelectInput'
+import RadioInputContainer from 'components/shared/Form/RadioInput'
 import Router from 'next/router'
 import Page from 'layouts/Main'
 import Form from 'components/shared/Form'
@@ -106,6 +107,16 @@ export default class Liqid extends Component {
 
             {(type == "select") &&
               <SelectInputContainer
+                label={label}
+                name={currentQuestion}
+                value={this.state[currentQuestion] || ""}
+                options={options}
+                handleChange={this.handleInputChange}
+              />
+            }
+
+            {(type == "radio") &&
+              <RadioInputContainer
                 label={label}
                 name={currentQuestion}
                 value={this.state[currentQuestion] || ""}
