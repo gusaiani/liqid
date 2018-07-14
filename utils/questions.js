@@ -12,6 +12,13 @@ const questions = [
     type: 'text',
     placeholder: 'Age'
   },
+
+  {
+    query: 'salary',
+    label: 'What is your current salary?',
+    type: 'text',
+    placeholder: 'Current Salary'
+  },
 ]
 
 export const findQuestion = function(query) {
