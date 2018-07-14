@@ -1,4 +1,5 @@
 import {Component, Fragment} from 'react'
+import TextInputContainer from 'components/shared/Form/TextInput'
 import Router from 'next/router'
 import Page from 'layouts/Main'
 import Header from 'components/shared/Header'
@@ -12,49 +13,44 @@ import {
 } from 'utils/questions'
 
 export default class Liqid extends Component {
-  constructor(props) {
-    super(props)
-    this.myRef = React.createRef()
-  }
-
-  state = {}
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      nextEnabled: false,
-      inputValue: ""
-    })
-  }
-
-  componentDidMount(context) {
-    const {questionKey} = this.props
-    const response = localStorage.getItem(questionKey)
-
-    let obj = {}
-    obj[questionKey] = response
-    obj.nextEnabled = !!response
-    this.setState(obj)
+  state = {
+    nextEnabled: false,
   }
 
   static getInitialProps(context) {
     const {q} = context.query
-    const questionKey = q || firstQuestionKey
-    return {questionKey}
+    const currentQuestion = q || firstQuestionKey
+    return {currentQuestion}
   }
 
-  handleInputChange = () => {
-    const {questionKey} = this.props
-    const inputValue = this.myRef.current.value
+  componentDidMount() {
+    const {currentQuestion} = this.props
+    this.updateResponse(currentQuestion)
+  }
+
+  updateResponse = (question) => {
+    const response = localStorage.getItem(question)
+
+    let obj = {}
+    obj[question] = response
+    obj.nextEnabled = !!response
+    obj.currentQuestion = question
+    this.setState(obj)
+  }
+
+  handleInputChange = (e) => {
+    const inputValue = e.target.value
+    const {currentQuestion} = this.state
     this.setState({nextEnabled: inputValue != ""})
 
     let obj = {}
-    obj[questionKey] = inputValue
+    obj[currentQuestion] = inputValue
     this.setState(obj)
   }
 
   handleBack = () => {
-    const {questionKey} = this.props
-    const {questionPosition} = findQuestion(questionKey)
+    const {currentQuestion} = this.state
+    const {questionPosition} = findQuestion(currentQuestion)
     const prevKey = prevQuestionKey(questionPosition)
 
     Router.push(`/?q=${prevKey}`)
@@ -62,14 +58,18 @@ export default class Liqid extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const {questionKey} = this.props
-    const {questionPosition} = findQuestion(questionKey)
+    const {currentQuestion} = this.state
+    const {questionPosition} = findQuestion(currentQuestion)
     const nextKey = nextQuestionKey(questionPosition)
+    const nextQuestion = findQuestion(nextKey)
 
     localStorage.setItem(
-      questionKey,
-      this.state[questionKey]
+      currentQuestion,
+      this.state[currentQuestion]
     )
+
+    this.setState({currentQuestion: nextQuestion.question.query})
+    this.updateResponse(nextQuestion.question.query)
 
     if (nextKey) {
       Router.push(`/?q=${nextKey}`)
@@ -79,8 +79,8 @@ export default class Liqid extends Component {
   }
 
   render() {
-    const {questionKey} = this.props
-    const {question, questionPosition, questionsLength} = findQuestion(questionKey)
+    const {currentQuestion} = this.state
+    const {question, questionPosition, questionsLength} = findQuestion(currentQuestion)
     const {label, type, placeholder} = question
 
     return (
@@ -89,14 +89,13 @@ export default class Liqid extends Component {
 
         <Form onSubmit={this.handleSubmit}>
           <Fragment>
-            <h1>{label}</h1>
-            <input
-              type="text"
+            <TextInputContainer
+              label={label}
               placeholder={placeholder}
-              ref={this.myRef}
-              name={questionKey}
-              value={this.state[questionKey]}
-              onChange={this.handleInputChange}/>
+              name={currentQuestion}
+              value={this.state[currentQuestion] || ""}
+              handleChange={this.handleInputChange}
+            />
 
             {(questionPosition > 0) &&
               <Button type="button" onClick={this.handleBack}>
