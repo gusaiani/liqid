@@ -87,5 +87,4 @@ Our goal is to find answers to the following questions and to get a sense for ho
   * **Code Quality:** Is the code clean, consistent, well-structured and easy to understand? Do you demonstrate a good understanding of ES6 & semantic HTML?
   * **Performance:** Is the app running smoothly? How does it work with a slow internet connection? Does the UI render quickly? Are the choice of libraries etc. appropriate for the given task?
   * **BONUS**: Are code quality tools in place? Did you write tests?
-Asking questions is good. We are happy to help you and will not penalize you for asking questions. In an actual work environment, we prefer that engineers spend 30 minutes talking a problem over with someone than spend an entire day building the wrong thing.
-You do not need to accomplish everything, but obviously, the more the better.
+    * So far we have eslint and prettier. I intend to include tests very soon.
