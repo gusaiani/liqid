@@ -1,9 +1,14 @@
 import styled from 'styled-components'
+import {mobileMedia} from 'constants/media'
 
 export default styled.div`
   font-family: 'Muli';
   margin: 0 auto;
   width: 500px;
+
+  @media ${mobileMedia} {
+    width: calc(100% - 40px);
+  }
 
   div.result {
     margin-bottom: 30px;

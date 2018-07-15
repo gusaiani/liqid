@@ -4,7 +4,6 @@ import {mobileMedia} from 'constants/media'
 
 export default styled.form`
   margin: 0 auto;
-  padding: 10px;
   width: ${({full}) => (full ? '100%' : '400px')};
   box-sizing: border-box;
 
@@ -42,7 +41,7 @@ export default styled.form`
   }
 
   @media ${mobileMedia} {
-    width: calc(100vw - 40px);
+    width: 100%;
   }
 
   input[type='text'],

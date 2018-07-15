@@ -61,7 +61,7 @@ Now you're ready to go to `http://localhost:3000` in your browser.
     * ✔, here you'll see React and Next.js, see `/packages.json`
     * I chose not to use a library for state management since this is a relatively simple state-handling case
 
-  * Do not use libraries explicitly build for the various features of the survey. (progress bar, form elements, etc.)
+  * Do not use libraries explicitly built for the various features of the survey. (progress bar, form elements, etc.)
     * ✔, all right, didn't use any
 
 ###### Structure CSS( SCSS, LESS, STYLUS...) with an eye on scalability & maintainability
