@@ -16,20 +16,40 @@ Now you're ready to go to `http://localhost:3000` in your browser.
 
 ### Each page includes...
 
-  * one question
-  * one of the following input types to answer the question
-    * Text input field
-    * Dropdown (several options, one selectable)
-    * Radio buttons (multiple inputs, one selectable)
-  * One back button to go to the previous page of the journey (if not on first page)
-  * One next button to go to the next page of the journey (if not on summary / last page)
-    * The button should be disabled if no input is given yet for the current page
-  * The last page shows a summary of all questions with answers (no wireframe
-included, just make something up)
-  * The survey can be browsed using the native browser back / next button
-  * **BONUS**: A progress indicator bar
-  * **BONUS**: When closing the browser window and reopening it, the progress with its
-data is restored
+###### one question
+
+✔, see `/pages/index.js` as the entry point
+
+###### one of the following input types to answer the question
+
+  * Text input field
+    * ✔, see `/components/shared/Form/TextInput`
+
+  * Dropdown (several options, one selectable)
+    * ✔, see `/components/shared/Form/SelectInput`
+
+  * Radio buttons (multiple inputs, one selectable)
+    * ✔, see `/components/shared/Form/RadioInput`
+
+###### One back button to go to the previous page of the journey (if not on first page)
+  * ✔
+
+###### One next button to go to the next page of the journey (if not on summary / last page)
+  * ✔
+
+###### The button should be disabled if no input is given yet for the current page
+  * ✔
+
+###### The last page shows a summary of all questions with answers (no wireframe included, just make something up)
+  * …, see `http://localhost:4000/results`, code in `pages/results/js`
+
+###### The survey can be browsed using the native browser back / next button
+  * …, see `http://localhost:4000/results`, code in `pages/results/js`
+
+###### **BONUS**: A progress indicator bar
+
+###### **BONUS**: When closing the browser window and reopening it, the progress with its data is restored
+  * ✔, using localStorage
 
 ### Implementation & hints
 
