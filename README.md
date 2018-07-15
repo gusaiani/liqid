@@ -47,6 +47,7 @@ Now you're ready to go to `http://localhost:3000` in your browser.
   * ✔, see `http://localhost:3000/results`, code in `pages/results/js`
 
 ###### **BONUS**: A progress indicator bar
+  * ✔
 
 ###### **BONUS**: When closing the browser window and reopening it, the progress with its data is restored
   * ✔, using `localStorage`
