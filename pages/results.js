@@ -28,7 +28,7 @@ export default class Liqid extends Component {
           return <div className="result" key={question.query}>
             <p>{question.label}</p>
             {this.state &&
-              <p>{this.state[question.query]}</p>
+              <p>{this.state[question.query] || "You haven't replied to this question yet."}</p>
             }
           </div>
         })}

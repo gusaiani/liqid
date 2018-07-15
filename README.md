@@ -41,10 +41,10 @@ Now you're ready to go to `http://localhost:3000` in your browser.
   * ✔
 
 ###### The last page shows a summary of all questions with answers (no wireframe included, just make something up)
-  * …, see `http://localhost:4000/results`, code in `pages/results/js`
+  * ✔, see `http://localhost:4000/results`, code in `pages/results/js`
 
 ###### The survey can be browsed using the native browser back / next button
-  * …, see `http://localhost:4000/results`, code in `pages/results/js`
+  * ✔, see `http://localhost:4000/results`, code in `pages/results/js`
 
 ###### **BONUS**: A progress indicator bar
 
