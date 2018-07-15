@@ -4,7 +4,7 @@ import {mobileMedia} from 'constants/media'
 
 export default styled.form`
   margin: 0 auto;
-  width: ${({full}) => (full ? '100%' : '400px')};
+  width: ${({full}) => (full ? '100%' : '500px')};
   box-sizing: border-box;
 
   .Select-control {

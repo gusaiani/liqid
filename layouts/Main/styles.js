@@ -11,7 +11,7 @@ export default styled.div`
   }
 
   div.result {
-    margin-bottom: 30px;
+    margin-top: 50px;
 
     &:first-of-type {
       margin-top: 40px;

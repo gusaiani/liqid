@@ -98,8 +98,7 @@ export default class Liqid extends Component {
     const {label, type, placeholder, options} = question
 
     return (
-      <Page>
-
+      <Page currentQuestion={currentQuestion}>
         <Form onSubmit={this.handleSubmit}>
           <Fragment>
             {(type == "text") &&

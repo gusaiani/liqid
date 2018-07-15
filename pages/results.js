@@ -21,7 +21,7 @@ export default class Liqid extends Component {
 
   render() {
     return (
-      <Page>
+      <Page isFinalPage={true}>
         Here are your results.
 
         {questions.map(question => {

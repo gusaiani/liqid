@@ -74,3 +74,12 @@ export const prevQuestionKey = function(currentPosition) {
   const prevKey = questions[currentPosition - 1].query
   return prevKey
 }
+
+export const progressPercentage = function(currentQuestion) {
+  const queries = questions.map(question => {
+    return question.query
+  })
+
+  const queryPosition = queries.indexOf(currentQuestion)
+  return queryPosition / queries.length * 100
+}
