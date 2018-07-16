@@ -43,10 +43,10 @@ Now you're ready to go to `http://localhost:3000` in your browser.
   * ✔
 
 ###### The last page shows a summary of all questions with answers (no wireframe included, just make something up)
-  * ✔, see `http://localhost:3000/results`, code in `pages/results/js`
+  * ✔, see `http://localhost:3000/results`, code in `pages/results.js`
 
 ###### The survey can be browsed using the native browser back / next button
-  * ✔, see `http://localhost:3000/results`, code in `pages/results/js`
+  * ✔, see `http://localhost:3000/results`, code in `pages/results.js`
 
 ###### **BONUS**: A progress indicator bar
   * ✔
@@ -89,4 +89,4 @@ Our goal is to find answers to the following questions and to get a sense for ho
   * **Code Quality:** Is the code clean, consistent, well-structured and easy to understand? Do you demonstrate a good understanding of ES6 & semantic HTML?
   * **Performance:** Is the app running smoothly? How does it work with a slow internet connection? Does the UI render quickly? Are the choice of libraries etc. appropriate for the given task?
   * **BONUS**: Are code quality tools in place? Did you write tests?
-    * So far we have eslint and prettier. I intend to include tests very soon.
+    * So far we have eslint, prettier, and one test set up with jest.
