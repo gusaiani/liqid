@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gusaiani/liqid.svg?branch=master)](https://travis-ci.org/gusaiani/liqid)
+
 # Liqid Next.js Questionnaire
 
 This is a questionnaire prototype built with React and Next.js for Liqid.de
